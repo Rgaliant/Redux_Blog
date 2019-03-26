@@ -1,9 +1,10 @@
 import React from 'react';
 import AppForm from "./AppForm";
+import SidebarNav from './Sidebar'
 import { connect, } from "react-redux";
 import { getApps, } from "../reducers/apps";
 import { Link, } from "react-router-dom";
-import { Container, Header, Card, Image, Button, } from "semantic-ui-react";
+import { Container, Header, Card, Image, Button, Sidebar } from "semantic-ui-react";
 
 class Apps extends React.Component {
   state = { showForm: false, };
@@ -20,24 +21,33 @@ class Apps extends React.Component {
 
   apps = () => {
     return this.props.apps.map( app => 
-      <Card key={app.id}>
+      <Card raised key={app.id} style={{fontFamily: "Charter"}}>
         <Image src={app.logo} />
         <Card.Content>
-          <Card.Header>
-            { app.name }
+          <Card.Description>
+          <img src='https://picsum.photos/700/200/?random' alt='' style={{width: '100%'}} />
+          </Card.Description>
+          <br />
+          <Card.Header style={{textAlign: "left", fontSize: "30px", fontFamily: "kievit"}}>
+            { app.title }
           </Card.Header>
+          <Card.Description>
+            { app.body }
+          </Card.Description>
+          <span>
+            <Card.Meta style={{textAlign: "right"}}> 
+             { app.category }
+            </Card.Meta>
+          </span>
           <Card.Meta>
             <span>
-              { app.author }
+              By: { app.author }
             </span>
           </Card.Meta>
-          <Card.Description>
-            { app.category }
-          </Card.Description>
         </Card.Content>
         <Card.Content extra>
           <Link to={`/apps/${app.id}`}>
-            View App
+            View Post
           </Link>
         </Card.Content>
       </Card>
@@ -48,19 +58,21 @@ class Apps extends React.Component {
     const { showForm, } = this.state;
 
     return (
-      <Container>
-        <Header as="h3" textAlign="center">Apps</Header>
-        <Button onClick={this.toggleForm}>
-          { showForm ? "Hide Form" : "Show Form" }    
-        </Button>
-        { showForm ? 
-          <AppForm closeForm={this.toggleForm} />
-            :
-          <Card.Group itemsPerRow={4}>
-            { this.apps() }
-          </Card.Group> 
-        }
-      </Container>
+      <div>
+      <SidebarNav />
+        <Container>
+          
+          {/* <Button onClick={this.toggleForm}>
+            { showForm ? "Hide Form" : "Show Form" }    
+          </Button>
+          { showForm ? 
+            <AppForm closeForm={this.toggleForm} />
+              : */}
+            <Card.Group itemsPerRow={1}>
+              { this.apps() }
+            </Card.Group> 
+        </Container>
+      </div>
     )
   }
 }

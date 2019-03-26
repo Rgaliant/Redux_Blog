@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Header, Image, Container, Table, Button, } from 'semantic-ui-react';
+import { Header, Image, Container, Table, Button, Tab, } from 'semantic-ui-react';
 import { Link, } from 'react-router-dom';
 import AppForm from './AppForm';
 import { deleteApp, } from "../reducers/apps";
@@ -26,7 +26,7 @@ class AppView extends React.Component {
 
     return (
       <Container>
-        <Link to="/apps">View All Apps</Link>
+        <Link to="/apps">View All Blogs</Link>
         <Button onClick={this.toggleForm}>
           { showForm ? 'Cancel' : 'Edit' }
         </Button>
@@ -38,7 +38,6 @@ class AppView extends React.Component {
           :
           <div>
             <Header as="h3" textAlign="center">{app.name}</Header>
-            <Image src={app.logo} />
             <Table definition>
               <Table.Header>
                 <Table.Row>
@@ -49,20 +48,16 @@ class AppView extends React.Component {
 
               <Table.Body>
                 <Table.Row>
-                  <Table.Cell>Description</Table.Cell>
-                  <Table.Cell>{app.description}</Table.Cell>
+                  <Table.Cell>Title</Table.Cell>
+                  <Table.Cell>{app.title}</Table.Cell>
                 </Table.Row>
                 <Table.Row>
                   <Table.Cell>Author</Table.Cell>
                   <Table.Cell>{app.author}</Table.Cell>
                 </Table.Row>
                 <Table.Row>
-                  <Table.Cell>Version</Table.Cell>
-                  <Table.Cell>{app.version}</Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                  <Table.Cell>Price</Table.Cell>
-                  <Table.Cell>${app.price}</Table.Cell>
+                  <Table.Cell>Post</Table.Cell>
+                  <Table.Cell>{app.body}</Table.Cell>
                 </Table.Row>
                 <Table.Row>
                   <Table.Cell>Category</Table.Cell>

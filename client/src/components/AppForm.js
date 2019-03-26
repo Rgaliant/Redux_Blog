@@ -5,11 +5,9 @@ import { Form, } from 'semantic-ui-react';
 
 class AppForm extends React.Component {
   initialState = {
-    name: '',
-    description: '',
+    title: '',
+    body: '',
     category: '',
-    price: '',
-    version: '',
     author: '',
   };
 
@@ -35,22 +33,16 @@ class AppForm extends React.Component {
   }
 
   render() {
-    const { name, description, category, version, price, author, } = this.props;
+    const { title, body, category, author, } = this.props;
 
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Input
-          name="name"
+          name="title"
           required
-          defaultValue={name}
+          defaultValue={title}
           onChange={this.handleChange}
-          label="Name"
-        />
-        <Form.Input
-          name="description"
-          defaultValue={description}
-          onChange={this.handleChange}
-          label="Description"
+          label="Title"
         />
         <Form.Input
           name="category"
@@ -59,24 +51,16 @@ class AppForm extends React.Component {
           label="Category"
         />
         <Form.Input
-          name="version"
-          defaultValue={version}
-          onChange={this.handleChange}
-          label="Version"
-        />
-        <Form.Input
-          name="price"
-          defaultValue={price}
-          type="number"
-          min="0"
-          onChange={this.handleChange}
-          label="Price"
-        />
-        <Form.Input
           name="author"
           defaultValue={author}
           onChange={this.handleChange}
           label="Author"
+        />
+        <Form.Input
+          name="body"
+          defaultValue={body}
+          onChange={this.handleChange}
+          label="Body"
         />
         <Form.Button>Save</Form.Button>
       </Form>

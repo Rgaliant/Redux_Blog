@@ -4,9 +4,9 @@ import { Header, } from 'semantic-ui-react';
 
 const Home = () => (
   <Header as="h3" textAlign="center">
-    Welcome To The
+    Welcome To My 
     {" "}
-    <Link to="/apps">App Store</Link>
+    <Link to="/apps">Blog</Link>
   </Header>
 );
 
